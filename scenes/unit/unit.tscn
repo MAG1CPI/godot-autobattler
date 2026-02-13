@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://wkov578c00np"]
+
+[ext_resource type="Texture2D" uid="uid://cx1ivjobggp8n" path="res://assets/sprites/rogues.png" id="1_bhlit"]
+[ext_resource type="Script" uid="uid://cs74wd2eqgeop" path="res://scenes/unit/unit.gd" id="1_vgvef"]
+[ext_resource type="Resource" uid="uid://dvrjkbkg27g6x" path="res://data/units/bjorn.tres" id="2_3po7s"]
+[ext_resource type="StyleBox" uid="uid://uyoiob127533" path="res://scenes/unit/unit_bar_background_style.tres" id="2_vgvef"]
+[ext_resource type="StyleBox" uid="uid://dykpe2jpuf8fu" path="res://scenes/unit/unit_health_bar_fill_style.tres" id="3_3po7s"]
+[ext_resource type="StyleBox" uid="uid://b75cpcj5qyyha" path="res://scenes/unit/unit_mana_bar_fill_style.tres" id="4_0wuuu"]
+[ext_resource type="Script" uid="uid://daiv66x3vmdw0" path="res://components/drag_and_drop.gd" id="7_0wuuu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxe1c"]
+size = Vector2(36, 36)
+
+[node name="Unit" type="Area2D" unique_id=212712897]
+script = ExtResource("1_vgvef")
+stats = ExtResource("2_3po7s")
+
+[node name="Skin" type="Sprite2D" parent="." unique_id=1986705421]
+texture = ExtResource("1_bhlit")
+offset = Vector2(16, 8)
+region_enabled = true
+region_rect = Rect2(32, 96, 32, 32)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=976013398]
+position = Vector2(16, 8)
+shape = SubResource("RectangleShape2D_gxe1c")
+metadata/_edit_lock_ = true
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1103898991]
+offset_left = 1.0
+offset_top = -16.0
+offset_right = 31.0
+offset_bottom = -11.0
+theme_override_styles/background = ExtResource("2_vgvef")
+theme_override_styles/fill = ExtResource("3_3po7s")
+value = 44.0
+show_percentage = false
+
+[node name="ManaBar" type="ProgressBar" parent="." unique_id=1764713151]
+offset_left = 1.0
+offset_top = -12.0
+offset_right = 31.0
+offset_bottom = -8.0
+theme_override_styles/background = ExtResource("2_vgvef")
+theme_override_styles/fill = ExtResource("4_0wuuu")
+value = 77.0
+show_percentage = false
+
+[node name="DragAndDrop" type="Node" parent="." unique_id=934006235 node_paths=PackedStringArray("target")]
+script = ExtResource("7_0wuuu")
+target = NodePath("..")
