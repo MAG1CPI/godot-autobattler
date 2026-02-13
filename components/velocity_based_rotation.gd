@@ -20,14 +20,14 @@ var rotating: bool = false
 
 func _physics_process(delta: float) -> void:
   if not enabled or not target: return
-  
+
   velocity = (target.global_position - last_postion) / delta
   last_postion = target.global_position
 
   var new_angle: float = 0.0
   if abs(velocity.x) >= x_velocity_threshold:
     new_angle = velocity.normalized().x * deg_to_rad(max_rotation_degree)
-  
+
   if not rotating or not is_equal_approx(new_angle, target_angle):
     rotating = true
     start_angle = target.rotation

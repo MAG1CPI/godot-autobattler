@@ -10,6 +10,7 @@ signal dropped(starting_position: Vector2)
 @export var enabled: bool = true
 @export var target: Area2D
 
+
 var starting_position: Vector2
 var offset := Vector2.ZERO
 var dragging := false
@@ -57,7 +58,7 @@ func _drop() -> void:
 
 func _on_target_input_event(_viewpoint: Node, event: InputEvent) -> void: # TODO: CANNOT HANDLE KEYBOARD EVENT
   if not enabled: return
-  
+
   var dragging_object := get_tree().get_first_node_in_group("dragging")
   if not dragging and dragging_object: return
 
