@@ -29,6 +29,11 @@ func set_stats(new_stats: UnitStats) -> void:
   skin.region_rect.position = Vector2(stats.skin_coordinates) * Arena.CELL_SIZE
 
 
+func reset_after_dragging(starting_position: Vector2) -> void:
+  velocity_based_rotation.enabled = false
+  global_position = starting_position
+
+
 func _on_mouse_entered() -> void:
   if drag_and_drop.dragging: return
   outline_highlighter.highlight()
@@ -47,8 +52,3 @@ func _on_drag_started() -> void:
 
 func _on_drag_canceled(starting_position: Vector2) -> void:
   reset_after_dragging(starting_position)
-
-
-func reset_after_dragging(starting_position: Vector2) -> void:
-  velocity_based_rotation.enabled = false
-  global_position = starting_position

@@ -14,7 +14,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxe1c"]
 size = Vector2(36, 36)
 
-[node name="Unit" type="Area2D" unique_id=212712897]
+[node name="Unit" type="Area2D" unique_id=212712897 groups=["units"]]
 script = ExtResource("1_vgvef")
 stats = ExtResource("2_3po7s")
 metadata/_edit_group_ = true

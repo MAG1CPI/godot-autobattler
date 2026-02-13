@@ -4,6 +4,7 @@ class_name PlayArea
 
 @export var bounds_start: Vector2i
 @export var unit_grid: UnitGrid
+@export var tile_highlight: TileHighlighter
 
 
 @onready var bounds: Rect2i = Rect2i(Vector2i.ZERO, unit_grid.size)
