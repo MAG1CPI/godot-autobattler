@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://cejvu4vywgku7" path="res://data/units/robin.tres" id="9_vmsrg"]
 [ext_resource type="Script" uid="uid://cqtk84ggc3x38" path="res://components/unit_spawner.gd" id="12_s83md"]
 [ext_resource type="PackedScene" uid="uid://q4v20kyw0uyb" path="res://scenes/sell_portal/sell_portal.tscn" id="13_fv88w"]
+[ext_resource type="PackedScene" uid="uid://dqmoaib6png2n" path="res://scenes/shop/shop.tscn" id="14_fv88w"]
 [ext_resource type="Resource" uid="uid://cg1v52oifh8ra" path="res://data/player/player_stats.tres" id="14_w4nra"]
 
 [sub_resource type="Curve" id="Curve_5tue2"]
@@ -52,7 +53,7 @@ tile_set = ExtResource("1_1qjuf")
 
 [node name="Props" type="TileMapLayer" parent="Visuals" unique_id=1460059247]
 modulate = Color(1, 1, 1, 0.49803922)
-tile_map_data = PackedByteArray("AAAAAAMAAAABABMAAAAAAAQAAAACABMAAAAAAAUAAAAIABMAAAAAAAcAAAAKABMAAAAAAAkAAAALABMAAAABAAkAAAAAABMAAAABAAoAAAADABMAAAACAAAAAAADABMAAAACAAMAAAAFABMAAAACAAYAAAAOABMAAAADAAAAAAAEABMAAAADAAQAAAAHABMAAAAQAAAAAAAIABMAAAAQAAIAAAAFABMAAAAQAAQAAAABABIAAAARAAAAAAALABMAAAARAAQAAAAAABMAAAARAAUAAAAFABMAAAARAAsAAAAAABMAAAASAAAAAAAFABMAAAASAAQAAAAJABMAAAASAAYAAAABABMAAAASAAcAAAAFABMAAAASAAoAAAAEABMAAAATAAAAAAAJABMAAAATAAIAAAALABMAAAATAAgAAAAMABMAAAAYAAMAAAABABIAAAA=")
+tile_map_data = PackedByteArray("AAAAAAMAAAABABMAAAAAAAQAAAACABMAAAAAAAUAAAAIABMAAAAAAAcAAAAKABMAAAAAAAkAAAALABMAAAABAAkAAAAAABMAAAABAAoAAAADABMAAAACAAAAAAADABMAAAACAAMAAAAFABMAAAACAAYAAAAOABMAAAADAAAAAAAEABMAAAADAAQAAAAHABMAAAAQAAAAAAAIABMAAAAQAAIAAAAFABMAAAARAAsAAAAAABMAAAASAAoAAAAEABMAAAAYAAMAAAABABIAAAA=")
 tile_set = ExtResource("1_1qjuf")
 
 [node name="Walls" type="TileMapLayer" parent="Visuals" unique_id=206401926]
@@ -151,3 +152,7 @@ game_area = NodePath("../GameArea")
 [node name="SellPortal" parent="." unique_id=800936173 instance=ExtResource("13_fv88w")]
 position = Vector2(64, 288)
 player_stats = ExtResource("14_w4nra")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1111444411]
+
+[node name="Shop" parent="UILayer" unique_id=258854672 instance=ExtResource("14_fv88w")]
