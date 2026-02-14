@@ -3,6 +3,9 @@ extends Area2D
 class_name Unit
 
 
+signal quick_sell_pressed
+
+
 @export var stats: UnitStats: set = set_stats
 
 
@@ -16,10 +19,20 @@ class_name Unit
 @onready var outline_highlighter: OutlineHighlighter = $OutlineHighlighter
 
 
+var is_hovered := false
+
+
 func _ready() -> void:
-  if not Engine.is_editor_hint():
-    drag_and_drop.drag_started.connect(_on_drag_started)
-    drag_and_drop.drag_canceled.connect(_on_drag_canceled)
+  if Engine.is_editor_hint(): return
+  drag_and_drop.drag_started.connect(_on_drag_started)
+  drag_and_drop.drag_canceled.connect(_on_drag_canceled)
+  # quick_sell_pressed.connect(func(): print("sell"))
+
+
+func _input(event: InputEvent) -> void:
+  if not is_hovered: return
+  if event.is_action_pressed("quick_sell"):
+    quick_sell_pressed.emit()
 
 
 func set_stats(new_stats: UnitStats) -> void:
@@ -38,12 +51,14 @@ func _on_mouse_entered() -> void:
   if drag_and_drop.dragging: return
   outline_highlighter.highlight()
   z_index = 2
+  is_hovered = true
 
 
 func _on_mouse_exited() -> void:
   if drag_and_drop.dragging: return
   outline_highlighter.clear_highlight()
   z_index = 0
+  is_hovered = false
 
 
 func _on_drag_started() -> void:

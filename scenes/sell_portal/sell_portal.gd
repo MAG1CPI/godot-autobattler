@@ -1,0 +1,55 @@
+extends Area2D
+class_name SellPortal
+
+
+@export var player_stats: PlayerStats
+
+
+@onready var outline_highlighter: OutlineHighlighter = $OutlineHighlighter
+@onready var gold: HBoxContainer = %Gold
+@onready var gold_label: Label = %GoldLabel
+
+
+var current_unit: Unit
+
+
+func _ready() -> void:
+  var units := get_tree().get_nodes_in_group("units")
+  for unit: Unit in units:
+    setup_unit(unit)
+
+
+func setup_unit(unit: Unit) -> void:
+  unit.drag_and_drop.dropped.connect(_on_unit_dropped.bind(unit))
+  unit.quick_sell_pressed.connect(_sell_unit.bind(unit))
+
+
+func _on_unit_dropped(_starting_position: Vector2, unit: Unit) -> void:
+  if not unit or unit != current_unit: return
+  _sell_unit(unit)
+
+
+func _sell_unit(unit: Unit) -> void:
+  player_stats.gold += unit.stats.get_gold_value()
+  print(player_stats.gold)
+  #TODO: give items back to item pool
+  #TODO: put units back to the pool
+  unit.queue_free()
+
+
+func _on_area_entered(area: Area2D) -> void:
+  if area is not Unit: return
+  var unit: Unit = area
+  current_unit = unit
+  outline_highlighter.highlight()
+  gold_label.text = str(unit.stats.get_gold_value())
+  gold.show()
+
+
+func _on_area_exited(area: Area2D) -> void:
+  if area is not Unit: return
+  var unit: Unit = area
+  if unit and unit == current_unit:
+    current_unit = null
+  outline_highlighter.clear_highlight()
+  gold.hide()

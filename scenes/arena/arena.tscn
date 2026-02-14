@@ -9,9 +9,10 @@
 [ext_resource type="Script" uid="uid://d2qya8hwv5cgv" path="res://components/tile_highlighter.gd" id="6_u52cf"]
 [ext_resource type="Script" uid="uid://dpruth4ka5sm6" path="res://components/unit_mover.gd" id="8_ii07k"]
 [ext_resource type="Resource" uid="uid://btgsunejf2heq" path="res://data/units/arthur.tres" id="9_2ml6w"]
-[ext_resource type="Script" uid="uid://b371fnldk85cg" path="res://scenes/arena/debug_info.gd" id="9_6w4xk"]
 [ext_resource type="Resource" uid="uid://cejvu4vywgku7" path="res://data/units/robin.tres" id="9_vmsrg"]
 [ext_resource type="Script" uid="uid://cqtk84ggc3x38" path="res://components/unit_spawner.gd" id="12_s83md"]
+[ext_resource type="PackedScene" uid="uid://q4v20kyw0uyb" path="res://scenes/sell_portal/sell_portal.tscn" id="13_fv88w"]
+[ext_resource type="Resource" uid="uid://cg1v52oifh8ra" path="res://data/player/player_stats.tres" id="14_w4nra"]
 
 [sub_resource type="Curve" id="Curve_5tue2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.20469798, 1), 0.0, 0.0, 0, 0, Vector2(0.80201346, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -40,7 +41,6 @@ script = ExtResource("1_5tue2")
 metadata/_edit_lock_ = true
 
 [node name="DebugInfo" type="Node" parent="." unique_id=1413022025]
-script = ExtResource("9_6w4xk")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=1813839311]
 metadata/_edit_group_ = true
@@ -147,3 +147,7 @@ play_areas = [NodePath("../GameArea"), NodePath("../Bench")]
 script = ExtResource("12_s83md")
 bench = NodePath("../Bench")
 game_area = NodePath("../GameArea")
+
+[node name="SellPortal" parent="." unique_id=800936173 instance=ExtResource("13_fv88w")]
+position = Vector2(64, 288)
+player_stats = ExtResource("14_w4nra")

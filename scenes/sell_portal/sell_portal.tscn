@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://q4v20kyw0uyb"]
+
+[ext_resource type="Material" uid="uid://bb8m5fhpi4wqn" path="res://assets/shaders/2d_outline_shader.tres" id="1_g4w48"]
+[ext_resource type="Script" uid="uid://cymy7eywkudsu" path="res://scenes/sell_portal/sell_portal.gd" id="1_q37ab"]
+[ext_resource type="Texture2D" uid="uid://b1ro1ssup7dcp" path="res://assets/sprites/tiles.png" id="2_se251"]
+[ext_resource type="Script" uid="uid://b3xeg5lc2kvm3" path="res://components/outline_highlighter.gd" id="3_q37ab"]
+[ext_resource type="Texture2D" uid="uid://c4awhqfup7o2k" path="res://assets/sprites/gold.png" id="5_gmlex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmlex"]
+size = Vector2(32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_svd6b"]
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.49803922)
+
+[node name="SellPortal" type="Area2D" unique_id=800936173]
+script = ExtResource("1_q37ab")
+
+[node name="Visuals" type="CanvasGroup" parent="." unique_id=1909860818]
+material = ExtResource("1_g4w48")
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals" unique_id=2054381846]
+position = Vector2(16, 16)
+texture = ExtResource("2_se251")
+region_enabled = true
+region_rect = Rect2(224, 512, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1757669102]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_gmlex")
+
+[node name="OutlineHighlighter" type="Node" parent="." unique_id=1653825239 node_paths=PackedStringArray("visuals")]
+script = ExtResource("3_q37ab")
+visuals = NodePath("../Visuals")
+outline_color = Color(0.4745098, 1, 0.7058824, 1)
+outline_thickness = 2
+
+[node name="Label" type="Label" parent="." unique_id=772537123]
+custom_minimum_size = Vector2(32, 0)
+offset_top = 32.0
+offset_right = 32.0
+offset_bottom = 50.0
+text = "SELL"
+label_settings = SubResource("LabelSettings_svd6b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Gold" type="HBoxContainer" parent="." unique_id=422514676]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(32, 18)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -18.0
+offset_right = 32.0
+grow_vertical = 0
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="GoldLabel" type="Label" parent="Gold" unique_id=2022437702]
+unique_name_in_owner = true
+layout_mode = 2
+text = "99+"
+label_settings = SubResource("LabelSettings_svd6b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoldIcon" type="TextureRect" parent="Gold" unique_id=626398936]
+layout_mode = 2
+texture = ExtResource("5_gmlex")
+stretch_mode = 5
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
