@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://b3cdcqd81sqm3" path="res://components/play_area.gd" id="4_jx0ua"]
 [ext_resource type="Script" uid="uid://d2qya8hwv5cgv" path="res://components/tile_highlighter.gd" id="6_u52cf"]
 [ext_resource type="Script" uid="uid://dpruth4ka5sm6" path="res://components/unit_mover.gd" id="8_ii07k"]
+[ext_resource type="Resource" uid="uid://btgsunejf2heq" path="res://data/units/arthur.tres" id="9_2ml6w"]
 [ext_resource type="Script" uid="uid://b371fnldk85cg" path="res://scenes/arena/debug_info.gd" id="9_6w4xk"]
 
 [sub_resource type="Curve" id="Curve_5tue2"]
@@ -133,6 +134,7 @@ position = Vector2(128, -256)
 
 [node name="Unit5" parent="Bench" unique_id=1266611223 instance=ExtResource("4_aj7ud")]
 position = Vector2(160, -256)
+stats = ExtResource("9_2ml6w")
 
 [node name="UnitMover" type="Node" parent="." unique_id=1092785095 node_paths=PackedStringArray("play_areas")]
 script = ExtResource("8_ii07k")
