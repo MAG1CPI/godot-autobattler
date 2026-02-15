@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cduhqru0nsp5t" path="res://scenes/unit_card/unit_card.tscn" id="2_ptf86"]
 [ext_resource type="Resource" uid="uid://cg1v52oifh8ra" path="res://data/player/player_stats.tres" id="2_xcdpw"]
 [ext_resource type="PackedScene" uid="uid://c2xxmyo4ruts2" path="res://scenes/xp_button/xp_button.tscn" id="3_ge4d2"]
+[ext_resource type="Resource" uid="uid://dks7cb3ithues" path="res://data/unit_pool/unit_pool.tres" id="3_xcdpw"]
 [ext_resource type="PackedScene" uid="uid://dnbpqjswdei0x" path="res://scenes/reroll_button/reroll_button.tscn" id="4_xcdpw"]
 [ext_resource type="PackedScene" uid="uid://be871oqfxskvb" path="res://scenes/xp_tracker/xp_tracker.tscn" id="5_tp26b"]
 
@@ -21,6 +22,7 @@ grow_horizontal = 0
 theme_override_constants/separation = 8
 script = ExtResource("1_ge4d2")
 player_stats = ExtResource("2_xcdpw")
+unit_pool = ExtResource("3_xcdpw")
 
 [node name="Top" type="HBoxContainer" parent="." unique_id=825129626]
 layout_mode = 2

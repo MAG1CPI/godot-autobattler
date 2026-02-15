@@ -31,9 +31,6 @@ var border_color: Color
 func _ready() -> void:
   player_stats.changed.connect(on_player_stats_changed)
   on_player_stats_changed()
-  unit_bought.connect(
-    func(unit_stats_: UnitStats):
-      print("bought unit: ", unit_stats_, " gold: ", player_stats.gold))
 
 
 func _set_unit_stats(new_unit_stats: UnitStats) -> void:
@@ -41,7 +38,9 @@ func _set_unit_stats(new_unit_stats: UnitStats) -> void:
   if not is_node_ready():
     await ready
   if not unit_stats:
+    disabled = true
     _set_bought()
+    return
   border_color = UnitStats.RARITY_COLORS[unit_stats.rarity]
   border_sb.border_color = border_color
   bottom_sb.bg_color = border_color
@@ -52,7 +51,6 @@ func _set_unit_stats(new_unit_stats: UnitStats) -> void:
 
 func _set_bought():
   empty_placeholder.show()
-  disabled = true
   bought = true
 
 
@@ -77,7 +75,6 @@ func _on_mouse_exited() -> void:
 
 func _on_pressed() -> void:
   if bought: return
-  bought = true
-  empty_placeholder.show()
+  _set_bought()
   player_stats.gold -= unit_stats.gold_cost
   unit_bought.emit(unit_stats)

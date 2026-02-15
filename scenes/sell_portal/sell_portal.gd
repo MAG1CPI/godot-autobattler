@@ -3,6 +3,7 @@ class_name SellPortal
 
 
 @export var player_stats: PlayerStats
+@export var unit_pool:UnitPool
 
 
 @onready var outline_highlighter: OutlineHighlighter = $OutlineHighlighter
@@ -33,7 +34,7 @@ func _sell_unit(unit: Unit) -> void:
   player_stats.gold += unit.stats.get_gold_value()
   print(player_stats.gold)
   #TODO: give items back to item pool
-  #TODO: put units back to the pool
+  unit_pool.add_unit(unit.stats)
   unit.queue_free()
 
 
