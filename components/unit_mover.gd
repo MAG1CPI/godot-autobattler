@@ -32,10 +32,10 @@ func _get_play_area_for_position(global: Vector2) -> int:
 
 
 func _reset_unit_to_starting_postion(starting_position: Vector2, unit: Unit) -> void:
-  var i := _get_play_area_for_position(starting_position)
-  var tile := play_areas[i].get_tile_from_global(starting_position)
-
   unit.reset_after_dragging(starting_position)
+  var i := _get_play_area_for_position(starting_position)
+  if i < 0: return
+  var tile := play_areas[i].get_tile_from_global(starting_position)
   play_areas[i].unit_grid.add_unit(tile, unit)
 
 
