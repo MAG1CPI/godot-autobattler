@@ -5,6 +5,7 @@ class_name XPButton
 @export var player_stats: PlayerStats
 @export var xp_gain: int = 4
 @export var gold_require: int = 4
+@export var xp_buy_sound: AudioStream
 
 
 @onready var vbox_container: VBoxContainer = $VBoxContainer
@@ -33,3 +34,4 @@ func _on_player_stats_changed() -> void:
 func _on_pressed() -> void:
   player_stats.gold -= gold_require
   player_stats.xp += xp_gain
+  SFXPlayer.play(xp_buy_sound)

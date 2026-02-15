@@ -3,7 +3,8 @@ class_name SellPortal
 
 
 @export var player_stats: PlayerStats
-@export var unit_pool:UnitPool
+@export var unit_pool: UnitPool
+@export var sell_sound: AudioStream
 
 
 @onready var outline_highlighter: OutlineHighlighter = $OutlineHighlighter
@@ -35,6 +36,7 @@ func _sell_unit(unit: Unit) -> void:
   #TODO: give items back to item pool
   unit_pool.add_unit(unit.stats)
   unit.queue_free()
+  SFXPlayer.play(sell_sound)
 
 
 func _on_area_entered(area: Area2D) -> void:

@@ -3,6 +3,7 @@ class_name UnitCombiner
 
 
 @export var buffer_timer: Timer
+@export var combine_sound: AudioStream
 
 
 var queued_updates := 0
@@ -60,6 +61,7 @@ func _combine_units(unit1: Unit, unit2: Unit, unit3: Unit) -> void:
   unit3.remove_from_group("units")
   unit2.animations.play_combine_animation(unit1.global_position + Arena.QUARTER_CELL_SIZE)
   unit3.animations.play_combine_animation(unit1.global_position + Arena.QUARTER_CELL_SIZE)
+  SFXPlayer.play(combine_sound)
 
 
 func _on_buffer_timer_timeout() -> void:
