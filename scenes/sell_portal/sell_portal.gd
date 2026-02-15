@@ -32,7 +32,6 @@ func _on_unit_dropped(_starting_position: Vector2, unit: Unit) -> void:
 
 func _sell_unit(unit: Unit) -> void:
   player_stats.gold += unit.stats.get_gold_value()
-  print(player_stats.gold)
   #TODO: give items back to item pool
   unit_pool.add_unit(unit.stats)
   unit.queue_free()

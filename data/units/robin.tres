@@ -1,10 +1,14 @@
 [gd_resource type="Resource" script_class="UnitStats" format=3 uid="uid://cejvu4vywgku7"]
 
 [ext_resource type="Script" uid="uid://i1emqywagjqy" path="res://data/units/unit_stats.gd" id="1_wtcgd"]
+[ext_resource type="Script" uid="uid://cmgs46uyacbew" path="res://data/trait/trait.gd" id="2_6kg50"]
+[ext_resource type="Resource" uid="uid://bhyd84pn2wsom" path="res://data/trait/elf.tres" id="3_krl74"]
+[ext_resource type="Resource" uid="uid://dxihj83ns4al4" path="res://data/trait/ranger.tres" id="4_ke7c6"]
 
 [resource]
 script = ExtResource("1_wtcgd")
 name = "Robin"
 gold_cost = 1
+traits = Array[ExtResource("2_6kg50")]([ExtResource("3_krl74"), ExtResource("4_ke7c6")])
 skin_coordinates = Vector2i(2, 0)
 metadata/_custom_type_script = "uid://i1emqywagjqy"

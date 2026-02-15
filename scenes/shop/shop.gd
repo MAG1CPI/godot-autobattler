@@ -40,12 +40,10 @@ func _put_back_remaining_to_pool()->void:
     unit_card.queue_free()
 
 
-func _on_unit_bought(unit_stats: UnitStats) -> void:
-  unit_bought.emit(unit_stats)
+func _on_unit_bought(stats: UnitStats) -> void:
+  unit_bought.emit(stats)
 
 
 func _on_reroll_button_pressed() -> void:
-  print(unit_pool.unit_pool)
   _put_back_remaining_to_pool()
-  print(unit_pool.unit_pool)
   _roll_units()

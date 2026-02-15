@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Trait" format=3 uid="uid://d3oeuc5sk5tqa"]
+
+[ext_resource type="Texture2D" uid="uid://cmjp32ur0thqa" path="res://assets/sprites/traits/viking.png" id="1_dc6hi"]
+[ext_resource type="Script" uid="uid://cmgs46uyacbew" path="res://data/trait/trait.gd" id="2_sl8b1"]
+
+[resource]
+script = ExtResource("2_sl8b1")
+name = "Viking"
+icon = ExtResource("1_dc6hi")
+levels = 2
+unit_requirements = Array[int]([2, 3])
+unit_modifiers = Array[PackedScene]([null, null])
+metadata/_custom_type_script = "uid://cmgs46uyacbew"

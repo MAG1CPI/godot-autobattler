@@ -15,9 +15,9 @@ func _ready() -> void:
   _on_player_stats_changed()
 
 
-func _input(event: InputEvent) -> void:
-  if event.is_action_pressed("ui_accept"):
-    player_stats.xp += 4
+#func _input(event: InputEvent) -> void:
+  #if event.is_action_pressed("ui_accept"):
+    #player_stats.xp += 4
 
 
 func _on_player_stats_changed() -> void:

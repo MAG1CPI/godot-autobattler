@@ -8,8 +8,10 @@
 [ext_resource type="Material" uid="uid://bb8m5fhpi4wqn" path="res://assets/shaders/2d_outline_shader.tres" id="3_l0n34"]
 [ext_resource type="StyleBox" uid="uid://b75cpcj5qyyha" path="res://scenes/unit/unit_mana_bar_fill_style.tres" id="4_0wuuu"]
 [ext_resource type="Script" uid="uid://daiv66x3vmdw0" path="res://components/drag_and_drop.gd" id="7_0wuuu"]
+[ext_resource type="PackedScene" uid="uid://d36f3ckipcbic" path="res://scenes/tier_icon/tier_icon.tscn" id="8_5im7a"]
 [ext_resource type="Script" uid="uid://dmnse06u67kqv" path="res://components/velocity_based_rotation.gd" id="8_w7udy"]
 [ext_resource type="Script" uid="uid://b3xeg5lc2kvm3" path="res://components/outline_highlighter.gd" id="10_5im7a"]
+[ext_resource type="Script" uid="uid://dx2opu1ti4okp" path="res://components/unit_animation.gd" id="12_7jhsn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxe1c"]
 size = Vector2(36, 36)
@@ -53,6 +55,11 @@ theme_override_styles/fill = ExtResource("4_0wuuu")
 value = 77.0
 show_percentage = false
 
+[node name="TierIcon" parent="." unique_id=1227677231 instance=ExtResource("8_5im7a")]
+offset_top = -8.0
+offset_bottom = 2.0
+stats = ExtResource("2_3po7s")
+
 [node name="DragAndDrop" type="Node" parent="." unique_id=934006235 node_paths=PackedStringArray("target")]
 script = ExtResource("7_0wuuu")
 target = NodePath("..")
@@ -67,6 +74,11 @@ script = ExtResource("10_5im7a")
 visuals = NodePath("../Visuals")
 outline_color = Color(1, 1, 1, 1)
 outline_thickness = 2
+
+[node name="UnitAnimations" type="Node" parent="." unique_id=123238594 node_paths=PackedStringArray("unit")]
+script = ExtResource("12_7jhsn")
+unit = NodePath("..")
+metadata/_custom_type_script = "uid://dx2opu1ti4okp"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

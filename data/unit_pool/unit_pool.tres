@@ -5,8 +5,9 @@
 [ext_resource type="Resource" uid="uid://dvrjkbkg27g6x" path="res://data/units/bjorn.tres" id="3_2sl0h"]
 [ext_resource type="Resource" uid="uid://cejvu4vywgku7" path="res://data/units/robin.tres" id="4_pq0gh"]
 [ext_resource type="Script" uid="uid://pb68g2jbuweo" path="res://data/unit_pool/unit_pool.gd" id="5_22rhc"]
+[ext_resource type="Resource" uid="uid://f1nahfcl4dkw" path="res://data/units/harry.tres" id="5_l4vv1"]
 
 [resource]
 script = ExtResource("5_22rhc")
-available_units = Array[ExtResource("1_mht32")]([ExtResource("2_l4vv1"), ExtResource("3_2sl0h"), ExtResource("4_pq0gh")])
+available_units = Array[ExtResource("1_mht32")]([ExtResource("2_l4vv1"), ExtResource("3_2sl0h"), ExtResource("4_pq0gh"), ExtResource("5_l4vv1")])
 metadata/_custom_type_script = "uid://pb68g2jbuweo"

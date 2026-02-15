@@ -13,10 +13,12 @@ signal quick_sell_pressed
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var mana_bar: ProgressBar = $ManaBar
+@onready var tier_icon: TierIcon = $TierIcon
 
 @onready var drag_and_drop: DragAndDrop = $DragAndDrop
 @onready var velocity_based_rotation: VelocityBasedRotation = $VelocityBasedRotation
 @onready var outline_highlighter: OutlineHighlighter = $OutlineHighlighter
+@onready var animations: UnitAnimations = $UnitAnimations
 
 
 var is_hovered := false
@@ -26,7 +28,6 @@ func _ready() -> void:
   if Engine.is_editor_hint(): return
   drag_and_drop.drag_started.connect(_on_drag_started)
   drag_and_drop.drag_canceled.connect(_on_drag_canceled)
-  # quick_sell_pressed.connect(func(): print("sell"))
 
 
 func _input(event: InputEvent) -> void:
@@ -36,10 +37,14 @@ func _input(event: InputEvent) -> void:
 
 
 func set_stats(new_stats: UnitStats) -> void:
-  stats = new_stats
+  if not Engine.is_editor_hint():
+    stats = new_stats.duplicate()
+  else:
+    stats = new_stats
   if stats == null: return
   if not is_node_ready(): await ready
   skin.region_rect.position = Vector2(stats.skin_coordinates) * Arena.CELL_SIZE
+  tier_icon.stats = stats
 
 
 func reset_after_dragging(starting_position: Vector2) -> void:

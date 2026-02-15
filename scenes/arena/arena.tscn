@@ -3,6 +3,7 @@
 [ext_resource type="TileSet" uid="uid://dhhpjr8emulvh" path="res://scenes/arena/tileset.tres" id="1_1qjuf"]
 [ext_resource type="Script" uid="uid://o22nvljfbuwv" path="res://scenes/arena/arena.gd" id="1_5tue2"]
 [ext_resource type="Texture2D" uid="uid://mbxv0ayrsu3d" path="res://assets/sprites/star_particle.png" id="2_8trdl"]
+[ext_resource type="Script" uid="uid://b371fnldk85cg" path="res://scenes/arena/debug.gd" id="2_fv88w"]
 [ext_resource type="PackedScene" uid="uid://wkov578c00np" path="res://scenes/unit/unit.tscn" id="4_aj7ud"]
 [ext_resource type="Script" uid="uid://dh5fmc472uc3s" path="res://components/unit_grid.gd" id="4_asdgj"]
 [ext_resource type="Script" uid="uid://b3cdcqd81sqm3" path="res://components/play_area.gd" id="4_jx0ua"]
@@ -13,6 +14,10 @@
 [ext_resource type="Script" uid="uid://cqtk84ggc3x38" path="res://components/unit_spawner.gd" id="12_s83md"]
 [ext_resource type="PackedScene" uid="uid://q4v20kyw0uyb" path="res://scenes/sell_portal/sell_portal.tscn" id="13_fv88w"]
 [ext_resource type="PackedScene" uid="uid://dqmoaib6png2n" path="res://scenes/shop/shop.tscn" id="14_fv88w"]
+[ext_resource type="Script" uid="uid://v455am208yax" path="res://components/unit_combiner.gd" id="14_w4nra"]
+[ext_resource type="PackedScene" uid="uid://de1obcon8q18g" path="res://scenes/team_size_ui/team_size_ui.tscn" id="16_rhjlh"]
+[ext_resource type="Resource" uid="uid://cg1v52oifh8ra" path="res://data/player/player_stats.tres" id="17_tp84n"]
+[ext_resource type="PackedScene" uid="uid://dustft4mqgcl3" path="res://scenes/traits/traits.tscn" id="18_tp84n"]
 
 [sub_resource type="Curve" id="Curve_5tue2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.20469798, 1), 0.0, 0.0, 0, 0, Vector2(0.80201346, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -40,7 +45,8 @@ color = Color(1, 1, 1, 0.49803922)
 script = ExtResource("1_5tue2")
 metadata/_edit_lock_ = true
 
-[node name="DebugInfo" type="Node" parent="." unique_id=1413022025]
+[node name="Debug" type="Node" parent="." unique_id=1413022025]
+script = ExtResource("2_fv88w")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=1813839311]
 metadata/_edit_group_ = true
@@ -139,6 +145,9 @@ stats = ExtResource("9_vmsrg")
 position = Vector2(128, -96)
 stats = ExtResource("9_2ml6w")
 
+[node name="SellPortal" parent="." unique_id=800936173 instance=ExtResource("13_fv88w")]
+position = Vector2(64, 288)
+
 [node name="UnitMover" type="Node" parent="." unique_id=1092785095 node_paths=PackedStringArray("play_areas")]
 script = ExtResource("8_ii07k")
 play_areas = [NodePath("../GameArea"), NodePath("../Bench")]
@@ -148,9 +157,32 @@ script = ExtResource("12_s83md")
 bench = NodePath("../Bench")
 game_area = NodePath("../GameArea")
 
-[node name="SellPortal" parent="." unique_id=800936173 instance=ExtResource("13_fv88w")]
-position = Vector2(64, 288)
+[node name="UnitCombiner" type="Node" parent="." unique_id=899461550 node_paths=PackedStringArray("buffer_timer")]
+script = ExtResource("14_w4nra")
+buffer_timer = NodePath("BufferTimer")
+metadata/_custom_type_script = "uid://v455am208yax"
+
+[node name="BufferTimer" type="Timer" parent="UnitCombiner" unique_id=432901523]
+one_shot = true
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1111444411]
 
 [node name="Shop" parent="UILayer" unique_id=258854672 instance=ExtResource("14_fv88w")]
+metadata/_edit_lock_ = true
+
+[node name="TeamSizeUI" parent="UILayer" unique_id=973864037 node_paths=PackedStringArray("arena_grid") instance=ExtResource("16_rhjlh")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -23.0
+offset_top = 4.0
+offset_right = 23.0
+offset_bottom = 28.0
+grow_horizontal = 2
+player_stats = ExtResource("17_tp84n")
+arena_grid = NodePath("../../GameArea/ArenaUnitGrid")
+metadata/_edit_lock_ = true
+
+[node name="Traits" parent="UILayer" unique_id=1071065260 node_paths=PackedStringArray("arena_grid") instance=ExtResource("18_tp84n")]
+arena_grid = NodePath("../../GameArea/ArenaUnitGrid")
+metadata/_edit_lock_ = true
