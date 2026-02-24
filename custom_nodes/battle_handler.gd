@@ -25,15 +25,28 @@ signal enemy_won
 @onready var scene_spawner: SceneSpawner = $SceneSpawner
 
 
+#var player_test:BattleUnit
+#var enemy_test:BattleUnit
+#var enemy_target:BattleUnit
+#var player_target:BattleUnit
+
+
 func _ready() -> void:
   game_state.changed.connect(_on_game_state_changed)
 
 
-func _input(event: InputEvent) -> void:
-  if event.is_action_pressed("ui_right"):
-    get_tree().call_group("player_units", "queue_free")
-  if event.is_action_pressed("ui_left"):
-    get_tree().call_group("enemy_units", "queue_free")
+#func _input(event: InputEvent) -> void:
+  #if event.is_action_pressed("ui_right"):
+    #var new_pos := UnitNavigation.get_next_position(player_test,player_target)
+    #if new_pos== Vector2(-1,-1):return
+    #player_test.create_tween().tween_property(player_test,"global_position",new_pos ,0.5)
+    ##get_tree().call_group("player_units", "queue_free")
+  #if event.is_action_pressed("ui_left"):
+    #var new_pos := UnitNavigation.get_next_position(enemy_test,enemy_target)
+    #if new_pos== Vector2(-1,-1):return
+    #enemy_test.create_tween().tween_property(enemy_test,"global_position",new_pos ,0.5)
+    ##get_tree().call_group("enemy_units", "queue_free")
+
 
 func _clean_up_fight() -> void:
   get_tree().call_group("player_units", "queue_free")
@@ -58,6 +71,12 @@ func _prepare_fight() -> void:
     new_unit.stats = ZOMBIE
     new_unit.stats.team = UnitStats.Team.ENEMY
     _setup_battle_unit(unit_coord, new_unit)
+
+  #FOR TEST
+  #player_test = get_tree().get_first_node_in_group("player_units")
+  #enemy_test = get_tree().get_first_node_in_group("enemy_units")
+  #player_target = get_tree().get_nodes_in_group("enemy_units").pick_random()
+  #enemy_target = get_tree().get_nodes_in_group("player_units").pick_random()
 
 
 func _setup_battle_unit(unit_coord: Vector2i, new_unit: BattleUnit) -> void:

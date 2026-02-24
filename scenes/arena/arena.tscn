@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://b3cdcqd81sqm3" path="res://custom_nodes/play_area.gd" id="4_jx0ua"]
 [ext_resource type="Script" uid="uid://d2qya8hwv5cgv" path="res://components/tile_highlighter.gd" id="6_u52cf"]
 [ext_resource type="Script" uid="uid://dpruth4ka5sm6" path="res://custom_nodes/unit_mover.gd" id="8_ii07k"]
+[ext_resource type="Script" uid="uid://cdsekcy80u2xt" path="res://custom_nodes/unit_navigation_debug.gd" id="10_ybinm"]
 [ext_resource type="Script" uid="uid://cqtk84ggc3x38" path="res://custom_nodes/unit_spawner.gd" id="12_s83md"]
 [ext_resource type="Resource" uid="uid://bpxy5a0x15bgt" path="res://data/game_state/game_state.tres" id="13_fir7s"]
 [ext_resource type="PackedScene" uid="uid://q4v20kyw0uyb" path="res://scenes/sell_portal/sell_portal.tscn" id="13_fv88w"]
@@ -138,6 +139,14 @@ tile = Vector2i(3, 0)
 
 [node name="SellPortal" parent="." unique_id=800936173 instance=ExtResource("13_fv88w")]
 position = Vector2(64, 288)
+
+[node name="UnitNavigationDebug" type="Node2D" parent="." unique_id=583084739 node_paths=PackedStringArray("game_area")]
+position = Vector2(160, 32)
+script = ExtResource("10_ybinm")
+color = Color(0.6392157, 0.28627452, 0, 0.5019608)
+path_colors = Array[Color]([Color(0.5294118, 1, 1, 1), Color(0.9647059, 0, 0, 1), Color(0, 1, 0, 1), Color(1, 0.5294118, 1, 1), Color(1, 1, 0.53333336, 1)])
+game_area = NodePath("../GameArea")
+metadata/_custom_type_script = "uid://cdsekcy80u2xt"
 
 [node name="UnitMover" type="Node" parent="." unique_id=1774716490 node_paths=PackedStringArray("play_areas")]
 script = ExtResource("8_ii07k")

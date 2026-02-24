@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://b7vrqgnwk11o4"
 
 MusicPlayer="*uid://bm2mcbsv0qqqn"
 SFXPlayer="*uid://c2t8022t6ephv"
+UnitNavigation="*uid://hqapy77ex35e"
 
 [display]
 
