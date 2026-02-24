@@ -1,8 +1,10 @@
 extends PanelContainer
 class_name TeamSizeUI
 
+
 @export var player_stats: PlayerStats
 @export var arena_grid: UnitGrid
+
 
 @onready var unit_counter: Label = %UnitCounter
 @onready var too_many_units_icon: TextureRect = %TooManyUnitsIcon

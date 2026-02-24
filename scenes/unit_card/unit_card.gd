@@ -36,12 +36,11 @@ func _ready() -> void:
 
 func _set_unit_stats(new_unit_stats: UnitStats) -> void:
   unit_stats = new_unit_stats
-  if not is_node_ready():
-    await ready
   if not unit_stats:
     disabled = true
     _set_bought()
     return
+  if not is_node_ready(): return
   border_color = UnitStats.RARITY_COLORS[unit_stats.rarity]
   border_sb.border_color = border_color
   bottom_sb.bg_color = border_color

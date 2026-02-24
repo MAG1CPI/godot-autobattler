@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bmrq2l2qybcs3" path="res://scenes/traits/traits.gd" id="1_i0cai"]
 [ext_resource type="PackedScene" uid="uid://dhqa2d77f0rir" path="res://scenes/trait_ui/trait_ui.tscn" id="1_n8hla"]
+[ext_resource type="Script" uid="uid://b1rwpubgkfv7w" path="res://components/scene_spawner.gd" id="3_sts0g"]
 
 [node name="Traits" type="Control" unique_id=1071065260]
 layout_mode = 3
@@ -29,3 +30,8 @@ layout_mode = 2
 
 [node name="TraitUI5" parent="TraitsContainer" unique_id=1855317324 instance=ExtResource("1_n8hla")]
 layout_mode = 2
+
+[node name="SceneSpawner" type="Node" parent="." unique_id=732262366]
+script = ExtResource("3_sts0g")
+scene = ExtResource("1_n8hla")
+metadata/_custom_type_script = "uid://b1rwpubgkfv7w"

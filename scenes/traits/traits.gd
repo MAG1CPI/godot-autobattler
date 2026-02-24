@@ -2,13 +2,11 @@ extends Control
 class_name Traits
 
 
-const TRAIT_UI = preload("uid://dhqa2d77f0rir")
-
-
 @export var arena_grid: UnitGrid
 
 
 @onready var traits_container: VBoxContainer = $TraitsContainer
+@onready var scene_spawner: SceneSpawner = $SceneSpawner
 
 
 var current_traits := {}
@@ -37,9 +35,8 @@ func _update_traits() -> void:
 
 
 func _create_trait_ui(trait_data: Trait, units: Array[Unit]) -> void:
-  var trait_ui := TRAIT_UI.instantiate() as TraitUI
+  var trait_ui := scene_spawner.spawn_scene(traits_container) as TraitUI
   trait_ui.trait_data = trait_data
-  traits_container.add_child(trait_ui)
   current_traits[trait_data] = trait_ui
 
   trait_ui.update(units)

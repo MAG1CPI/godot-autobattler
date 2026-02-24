@@ -20,8 +20,8 @@ func update(units: Array[Unit]) -> void:
 
 
 func _set_trait_data(new_trait_data: Trait) -> void:
-  if not is_node_ready(): await ready
   trait_data = new_trait_data
+  if not is_node_ready(): return
   trait_icon.texture = trait_data.icon
   trait_label.text = trait_data.name
 
