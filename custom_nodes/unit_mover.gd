@@ -3,6 +3,7 @@ class_name UnitMover
 
 
 @export var play_areas: Array[PlayArea]
+@export var game_state: GameState
 @export var unit_place_sound: AudioStream
 
 
@@ -64,7 +65,12 @@ func _on_unit_dropped(starting_position: Vector2, unit: Unit) -> void:
   _set_highlighters(false)
   var old_area_index := _get_play_area_for_position(starting_position)
   var drop_area_index := _get_play_area_for_position(unit.get_global_mouse_position())
-  if drop_area_index == -1:
+
+  var is_invalid_drop := drop_area_index == -1
+  var is_bench_to_bench := old_area_index == 1 and drop_area_index == 1
+  var is_battling := game_state.current_phase == GameState.Phase.BATTLE
+
+  if is_invalid_drop or (is_battling and not is_bench_to_bench):
     _reset_unit_to_starting_postion(starting_position, unit)
     return
   var old_area := play_areas[old_area_index]

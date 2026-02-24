@@ -7,14 +7,18 @@ signal unit_spawned(unit: Unit)
 
 @export var bench: PlayArea
 @export var game_area: PlayArea
+@export var game_state: GameState
 
 
 @onready var scene_spawner: SceneSpawner = $SceneSpawner
 
 
 func _get_first_avilable_area() -> PlayArea:
-  return bench if not bench.unit_grid.is_grid_full() \
-    else game_area if not game_area.unit_grid.is_grid_full() \
+  var is_bench_full := bench.unit_grid.is_grid_full()
+  var is_game_area_full := game_area.unit_grid.is_grid_full()
+  var is_battling := game_state.current_phase == GameState.Phase.BATTLE
+  return bench if not is_bench_full \
+    else game_area if not is_game_area_full and not is_battling \
     else null
 
 

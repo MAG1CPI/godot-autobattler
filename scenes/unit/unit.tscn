@@ -43,7 +43,6 @@ shape = SubResource("RectangleShape2D_gxe1c")
 [node name="ManaBar" parent="." unique_id=767059211 instance=ExtResource("6_5im7a")]
 
 [node name="TierIcon" parent="." unique_id=1227677231 instance=ExtResource("8_5im7a")]
-z_index = 1
 offset_top = -8.0
 offset_bottom = 2.0
 stats = ExtResource("2_3po7s")

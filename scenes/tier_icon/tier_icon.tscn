@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dorn02l3qkr12" path="res://scenes/tier_icon/tier_icon.gd" id="2_45qg6"]
 
 [node name="TierIcon" type="TextureRect" unique_id=1227677231]
+z_index = 1
 custom_minimum_size = Vector2(10, 10)
 offset_right = 10.0
 offset_bottom = 10.0

@@ -1,7 +1,7 @@
 extends Resource
 class_name PlayerStats
 
-
+const MAX_LEVEL := 10
 const XP_REQUIREMENTS := {
   1: 0,
   2: 2,
@@ -16,15 +16,15 @@ const XP_REQUIREMENTS := {
   11: 99999,
 }
 const ROLL_RARITIES := {
-  1:  [UnitStats.Rarity.COMMON],
-  2:  [UnitStats.Rarity.COMMON],
-  3:  [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON],
-  4:  [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON, UnitStats.Rarity.RARE],
-  5:  [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON, UnitStats.Rarity.RARE],
-  6:  [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON, UnitStats.Rarity.RARE],
-  7:  [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON, UnitStats.Rarity.RARE, UnitStats.Rarity.LEGENDARY],
-  8:  [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON, UnitStats.Rarity.RARE, UnitStats.Rarity.LEGENDARY],
-  9:  [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON, UnitStats.Rarity.RARE, UnitStats.Rarity.LEGENDARY],
+  1: [UnitStats.Rarity.COMMON],
+  2: [UnitStats.Rarity.COMMON],
+  3: [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON],
+  4: [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON, UnitStats.Rarity.RARE],
+  5: [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON, UnitStats.Rarity.RARE],
+  6: [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON, UnitStats.Rarity.RARE],
+  7: [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON, UnitStats.Rarity.RARE, UnitStats.Rarity.LEGENDARY],
+  8: [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON, UnitStats.Rarity.RARE, UnitStats.Rarity.LEGENDARY],
+  9: [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON, UnitStats.Rarity.RARE, UnitStats.Rarity.LEGENDARY],
   10: [UnitStats.Rarity.COMMON, UnitStats.Rarity.UNCOMMON, UnitStats.Rarity.RARE, UnitStats.Rarity.LEGENDARY],
 }
 const ROLL_CHANCES := {
@@ -46,10 +46,10 @@ const ROLL_CHANCES := {
 @export_range(1, 10) var level: int = 1: set = _set_level
 
 
-func get_random_rarity_for_level()->UnitStats.Rarity:
+func get_random_rarity_for_level() -> UnitStats.Rarity:
   var rng = RandomNumberGenerator.new()
-  var array:Array = ROLL_RARITIES[level]
-  var weights:PackedFloat32Array = PackedFloat32Array(ROLL_CHANCES[level])
+  var array: Array = ROLL_RARITIES[level]
+  var weights: PackedFloat32Array = PackedFloat32Array(ROLL_CHANCES[level])
   return array[rng.rand_weighted(weights)]
 
 
