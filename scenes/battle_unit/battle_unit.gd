@@ -20,6 +20,7 @@ class_name BattleUnit
 @onready var flip_sprite: FlipSprite = $FlipSprite
 @onready var melee_attack: Attack = $MeleeAttack
 @onready var ranged_attack: Attack = $RangedAttack
+@onready var ability_spawner: SceneSpawner = $AbilitySpawner
 @onready var attack_timer: Timer = $AttackTimer
 
 
@@ -38,6 +39,7 @@ func _set_stats(value: UnitStats) -> void:
 
   melee_attack.spawner.scene = stats.melee_attack
   ranged_attack.spawner.scene = stats.ranged_attack
+  ability_spawner.scene = stats.ability
 
   skin.texture = UnitStats.TEAM_SPRITESHEET[stats.team]
   skin.coordinates = stats.skin_coordinates

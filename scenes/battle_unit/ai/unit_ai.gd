@@ -17,8 +17,12 @@ func _ready() -> void:
 
 func _set_enabled(new_flag: bool) -> void:
   enabled = new_flag
-  if enabled: _start_chasing()
-  else: fsm.change_state(null)
+  if enabled:
+    _start_chasing()
+    actor.stats.mana_bar_filled.connect(_on_mana_bar_filled)
+  else:
+    fsm.change_state(null)
+    actor.stats.mana_bar_filled.disconnect(_on_mana_bar_filled)
 
 
 func _physics_process(delta: float) -> void:
@@ -54,3 +58,9 @@ func _on_chase_state_target_reached(target: BattleUnit) -> void:
 
 func _on_state_changed(new_state: State) -> void:
   debug_label.text = new_state.get_script().get_global_name()
+
+
+func _on_mana_bar_filled() -> void:
+  var cast_state := CastState.new(actor)
+  cast_state.ability_cast_finished.connect(_start_chasing, CONNECT_ONE_SHOT)
+  fsm.change_state(cast_state)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://i1emqywagjqy" path="res://data/units/unit_stats.gd" id="1_d6p4t"]
 [ext_resource type="AudioStream" uid="uid://eyjx57qspqgj" path="res://assets/sfx/bjorn_1.ogg" id="1_poga5"]
+[ext_resource type="PackedScene" uid="uid://6ymcsetf5hi" path="res://scenes/abilities/bjorn_swing.tscn" id="1_y5alr"]
 [ext_resource type="Script" uid="uid://cmgs46uyacbew" path="res://data/trait/trait.gd" id="2_shr7q"]
 [ext_resource type="AudioStream" uid="uid://y2xuakbipa65" path="res://assets/sfx/bjorn_2.ogg" id="2_y5alr"]
 [ext_resource type="Resource" uid="uid://cu57d1852a1q1" path="res://data/trait/fighter.tres" id="3_f8bbe"]
@@ -30,5 +31,6 @@ max_mana = 50
 starting_mana = 15
 attack_damage = Array[int]([3, 5, 8])
 attack_speed = 0.75
+ability = ExtResource("1_y5alr")
 auto_attack_sound = SubResource("AudioStreamRandomizer_bk82h")
 metadata/_custom_type_script = "uid://i1emqywagjqy"

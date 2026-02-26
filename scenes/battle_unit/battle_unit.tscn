@@ -298,5 +298,9 @@ metadata/_custom_type_script = "uid://ckexb1xsd36vw"
 script = ExtResource("16_a0pnp")
 metadata/_custom_type_script = "uid://b1rwpubgkfv7w"
 
+[node name="AbilitySpawner" type="Node" parent="." unique_id=22116831]
+script = ExtResource("16_a0pnp")
+metadata/_custom_type_script = "uid://b1rwpubgkfv7w"
+
 [node name="AttackTimer" type="Timer" parent="." unique_id=1800768023]
 process_callback = 0
