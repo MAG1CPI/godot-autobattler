@@ -26,6 +26,6 @@ func _set_trait_data(new_trait_data: Trait) -> void:
   trait_label.text = trait_data.name
 
 
-func _set_active(flag: bool) -> void:
-  active = flag
+func _set_active(new_flag: bool) -> void:
+  active = new_flag
   modulate.a = 1.0 if active else 0.5

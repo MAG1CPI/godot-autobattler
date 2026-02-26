@@ -16,6 +16,7 @@ const TEAM_SPRITESHEET := {
   Team.PLAYER: preload("uid://cx1ivjobggp8n"),
   Team.ENEMY: preload("uid://ct4xk88g67xlv"),
 }
+const MOVE_ONE_TILE_SPEED := 1.0
 
 
 @export var name: String

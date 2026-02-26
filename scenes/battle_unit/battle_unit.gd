@@ -11,6 +11,8 @@ class_name BattleUnit
 @onready var tier_icon: TierIcon = $TierIcon
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@onready var unit_ai: UnitAI = $UnitAI
+
 
 func set_stats(value: UnitStats) -> void:
   stats = value

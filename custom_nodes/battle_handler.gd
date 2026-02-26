@@ -37,14 +37,18 @@ func _ready() -> void:
 
 #func _input(event: InputEvent) -> void:
   #if event.is_action_pressed("ui_right"):
-    #var new_pos := UnitNavigation.get_next_position(player_test,player_target)
-    #if new_pos== Vector2(-1,-1):return
-    #player_test.create_tween().tween_property(player_test,"global_position",new_pos ,0.5)
+    #var unit := get_tree().get_nodes_in_group("player_units")[0] as BattleUnit
+    #unit.unit_ai.enabled = true
+    ##var new_pos := UnitNavigation.get_next_position(player_test,player_target)
+    ##if new_pos== Vector2(-1,-1):return
+    ##player_test.create_tween().tween_property(player_test,"global_position",new_pos ,0.5)
     ##get_tree().call_group("player_units", "queue_free")
   #if event.is_action_pressed("ui_left"):
-    #var new_pos := UnitNavigation.get_next_position(enemy_test,enemy_target)
-    #if new_pos== Vector2(-1,-1):return
-    #enemy_test.create_tween().tween_property(enemy_test,"global_position",new_pos ,0.5)
+    #var unit := get_tree().get_nodes_in_group("enemy_units")[0] as BattleUnit
+    #unit.unit_ai.enabled = true
+    ##var new_pos := UnitNavigation.get_next_position(enemy_test,enemy_target)
+    ##if new_pos== Vector2(-1,-1):return
+    ##enemy_test.create_tween().tween_property(enemy_test,"global_position",new_pos ,0.5)
     ##get_tree().call_group("enemy_units", "queue_free")
 
 
