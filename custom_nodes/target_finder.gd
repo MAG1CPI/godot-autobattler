@@ -36,12 +36,24 @@ func has_target_in_range() -> bool:
 
 
 func _on_area_entered(area: Area2D) -> void:
-  if not area is BattleUnit: return
-  targets_in_range.append(area)
+  var unit := _get_battle_unit_from_area(area)
+  if not unit: return
+  targets_in_range.append(unit)
   targets_in_range_changed.emit()
 
 
 func _on_area_exited(area: Area2D) -> void:
-  if not area is BattleUnit: return
-  targets_in_range.erase(area)
+  var unit := _get_battle_unit_from_area(area)
+  if not unit: return
+  targets_in_range.erase(unit)
   targets_in_range_changed.emit()
+
+
+func _get_battle_unit_from_area(area: Area2D) -> BattleUnit:
+  if area is BattleUnit:
+    return area
+  if area is HurtBox and area.get_parent() is BattleUnit:
+    return area.get_parent()
+  if area.get_parent() is BattleUnit:
+    return area.get_parent()
+  return null
