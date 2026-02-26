@@ -49,7 +49,8 @@ func chase() -> void:
 
 
 func _end_chase() -> void:
-  target_reached.emit.call_deferred(actor_unit.target_finder.targets_in_range[0])
+  var target: BattleUnit = actor_unit.target_finder.targets_in_range[0]
+  target_reached.emit.call_deferred(target)
 
 
 func _has_target_in_range() -> bool:
