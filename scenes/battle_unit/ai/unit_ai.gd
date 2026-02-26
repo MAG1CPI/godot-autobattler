@@ -47,6 +47,8 @@ func _on_chase_state_stuck() -> void:
 
 func _on_chase_state_target_reached(target: BattleUnit) -> void:
   var auto_attack_state := AutoAttackState.new(actor, target)
+  auto_attack_state.target_died.connect(_start_chasing, CONNECT_ONE_SHOT)
+  auto_attack_state.target_left_range.connect(_start_chasing, CONNECT_ONE_SHOT)
   fsm.change_state(auto_attack_state)
 
 

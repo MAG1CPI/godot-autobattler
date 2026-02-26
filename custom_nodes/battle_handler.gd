@@ -76,6 +76,12 @@ func _prepare_fight() -> void:
     new_unit.stats.team = UnitStats.Team.ENEMY
     _setup_battle_unit(unit_coord, new_unit)
 
+  UnitNavigation.update_occupied_tiles()
+  var battle_units := get_tree().get_nodes_in_group("player_units") + get_tree().get_nodes_in_group("enemy_units")
+  battle_units.shuffle()
+  for battle_unit: BattleUnit in battle_units:
+    battle_unit.unit_ai.enabled = true
+
   #FOR TEST
   #player_test = get_tree().get_first_node_in_group("player_units")
   #enemy_test = get_tree().get_first_node_in_group("enemy_units")

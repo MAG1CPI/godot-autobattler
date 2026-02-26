@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://cc1f3ap5c3x1k"]
+
+[ext_resource type="Script" uid="uid://bqeifvi1rih1p" path="res://components/hit_box.gd" id="1_epifu"]
+[ext_resource type="Texture2D" uid="uid://bq687to3j5jwa" path="res://assets/sprites/effects_projectiles/attack_smear.png" id="2_7dlgm"]
+[ext_resource type="Script" uid="uid://buhmbdj48apxm" path="res://components/one_time_animation.gd" id="3_dee04"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqwx1"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_cbc5k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_bnlo6"]
+resource_name = "smear"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_us5ve"]
+_data = {
+&"RESET": SubResource("Animation_cbc5k"),
+&"smear": SubResource("Animation_bnlo6")
+}
+
+[node name="AttackSmearEffect" type="Area2D" unique_id=1690487325]
+script = ExtResource("1_epifu")
+metadata/_custom_type_script = "uid://bqeifvi1rih1p"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=596649555]
+texture = ExtResource("2_7dlgm")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1685615491]
+shape = SubResource("RectangleShape2D_uqwx1")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1888969022]
+libraries/ = SubResource("AnimationLibrary_us5ve")
+autoplay = &"smear"
+
+[node name="OneTimeAnimation" type="Node" parent="." unique_id=1433883561 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("3_dee04")
+animation_player = NodePath("../AnimationPlayer")
+metadata/_custom_type_script = "uid://buhmbdj48apxm"

@@ -16,5 +16,5 @@ class_name DetectRange
 
     shape.radius = base_range_size * stats.attack_range
     col_shape.shape = shape
-    collision_layer = 0b0100 << stats.team
-    collision_mask = 0b0010 >> stats.team
+    collision_layer = stats.get_range_collision_layer()
+    collision_mask = stats.get_collision_mask()

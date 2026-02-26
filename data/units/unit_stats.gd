@@ -28,6 +28,7 @@ const MAX_ATTACK_RANGE := 5
 const MANA_PER_ATTACK := 10
 const MOVE_ONE_TILE_SPEED := 1.0
 
+
 @export var name: String
 
 @export_category("Data")
@@ -51,7 +52,10 @@ const MOVE_ONE_TILE_SPEED := 1.0
 @export var armor: int
 @export var magic_resist: int
 @export_range(1, MAX_ATTACK_RANGE) var attack_range: int = 1
-#TODO: attak and casting related variables
+@export var melee_attack: PackedScene = preload("uid://cc1f3ap5c3x1k")
+@export var ranged_attack: PackedScene
+@export var ability: PackedScene
+@export var auto_attack_sound: AudioStream
 
 
 var health: int: set = _set_health
@@ -80,6 +84,25 @@ func get_combined_unit_count() -> int:
 
 func get_time_between_attacks() -> float:
   return 1.0 / attack_speed
+
+
+func get_collision_layer() -> int:
+  return 0b0001 << team
+
+
+func get_collision_mask() -> int:
+  return 0b0010 >> team
+
+
+func get_range_collision_layer() -> int:
+  return 0b0100 << team
+
+
+func get_range_collision_mask() -> int:
+  return 0b1000 >> team
+
+func is_player() -> bool:
+  return team == Team.PLAYER
 
 
 func is_melee() -> bool:

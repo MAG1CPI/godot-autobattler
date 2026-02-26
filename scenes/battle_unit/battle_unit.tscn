@@ -13,6 +13,9 @@
 [ext_resource type="Script" uid="uid://ck21khndhdix2" path="res://components/hurt_box.gd" id="10_euuyt"]
 [ext_resource type="Script" uid="uid://b0vyw16q6wnt1" path="res://custom_nodes/detect_range.gd" id="10_gou7k"]
 [ext_resource type="Script" uid="uid://biyijxwfa08mu" path="res://custom_nodes/target_finder.gd" id="13_gou7k"]
+[ext_resource type="Script" uid="uid://bp6utr6vmoi7m" path="res://components/filp_sprite.gd" id="14_4i2cr"]
+[ext_resource type="Script" uid="uid://ckexb1xsd36vw" path="res://components/attack.gd" id="15_bi2u5"]
+[ext_resource type="Script" uid="uid://b1rwpubgkfv7w" path="res://components/scene_spawner.gd" id="16_a0pnp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1myfu"]
 size = Vector2(36, 36)
@@ -246,6 +249,11 @@ metadata/_custom_type_script = "uid://ck21khndhdix2"
 shape = SubResource("RectangleShape2D_euuyt")
 debug_color = Color(0.99246377, 0, 0.25805137, 0.41960785)
 
+[node name="AttackAnchor" type="Node2D" parent="." unique_id=1284305066]
+
+[node name="AttackMarker" type="Marker2D" parent="AttackAnchor" unique_id=2074458556]
+position = Vector2(16, 0)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=630769434]
 libraries/ = SubResource("AnimationLibrary_hf5vq")
 
@@ -259,3 +267,23 @@ metadata/_custom_type_script = "uid://1ynalt6kxu02"
 script = ExtResource("13_gou7k")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://biyijxwfa08mu"
+
+[node name="FlipSprite" type="Node" parent="." unique_id=118807506 node_paths=PackedStringArray("sprite")]
+script = ExtResource("14_4i2cr")
+sprite = NodePath("../Skin")
+metadata/_custom_type_script = "uid://bp6utr6vmoi7m"
+
+[node name="MeleeAttack" type="Node" parent="." unique_id=1187326088 node_paths=PackedStringArray("parent", "anchor", "spawn_point", "spawner")]
+script = ExtResource("15_bi2u5")
+parent = NodePath("..")
+anchor = NodePath("../AttackAnchor")
+spawn_point = NodePath("../AttackAnchor/AttackMarker")
+spawner = NodePath("MeleeAttackSpawner")
+metadata/_custom_type_script = "uid://ckexb1xsd36vw"
+
+[node name="MeleeAttackSpawner" type="Node" parent="MeleeAttack" unique_id=1586557503]
+script = ExtResource("16_a0pnp")
+metadata/_custom_type_script = "uid://b1rwpubgkfv7w"
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=1800768023]
+process_callback = 0

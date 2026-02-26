@@ -17,6 +17,9 @@ class_name BattleUnit
 
 @onready var unit_ai: UnitAI = $UnitAI
 @onready var target_finder: TargetFinder = $TargetFinder
+@onready var flip_sprite: FlipSprite = $FlipSprite
+@onready var melee_attack: Attack = $MeleeAttack
+@onready var attack_timer: Timer = $AttackTimer
 
 
 func _ready() -> void:
@@ -28,13 +31,15 @@ func _set_stats(value: UnitStats) -> void:
   if not stats or not is_node_ready(): return
 
   stats = value.duplicate()
-  collision_layer = 0b01 << stats.team
-  hurt_box.collision_layer = 0b01 << stats.team
-  hurt_box.collision_mask = 0b10 >> stats.team
+  collision_layer = stats.get_collision_layer()
+  hurt_box.collision_layer = stats.get_collision_layer()
+  hurt_box.collision_mask = stats.get_collision_mask()
+
+  melee_attack.spawner.scene = stats.melee_attack
 
   skin.texture = UnitStats.TEAM_SPRITESHEET[stats.team]
   skin.coordinates = stats.skin_coordinates
-  skin.flip_h = stats.team == stats.Team.PLAYER
+  skin.flip_h = stats.is_player()
   health_bar.stats = stats
   mana_bar.stats = stats
   tier_icon.stats = stats

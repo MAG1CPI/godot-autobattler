@@ -2,7 +2,7 @@ extends Node
 class_name TargetFinder
 
 
-signal target_in_range_changed()
+signal targets_in_range_changed()
 
 
 @export var actor: BattleUnit
@@ -38,10 +38,10 @@ func has_target_in_range() -> bool:
 func _on_area_entered(area: Area2D) -> void:
   if not area is BattleUnit: return
   targets_in_range.append(area)
-  target_in_range_changed.emit()
+  targets_in_range_changed.emit()
 
 
 func _on_area_exited(area: Area2D) -> void:
   if not area is BattleUnit: return
   targets_in_range.erase(area)
-  target_in_range_changed.emit()
+  targets_in_range_changed.emit()

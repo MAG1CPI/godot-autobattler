@@ -16,9 +16,8 @@ signal unit_spawned(unit: Unit)
 func _get_first_avilable_area() -> PlayArea:
   var is_bench_full := bench.unit_grid.is_grid_full()
   var is_game_area_full := game_area.unit_grid.is_grid_full()
-  var is_battling := game_state.current_phase == GameState.Phase.BATTLE
   return bench if not is_bench_full \
-    else game_area if not is_game_area_full and not is_battling \
+    else game_area if not is_game_area_full and not game_state.is_battling() \
     else null
 
 
