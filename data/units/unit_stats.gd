@@ -2,6 +2,10 @@ extends Resource
 class_name UnitStats
 
 
+signal health_reached_zero
+signal mana_bar_filled
+
+
 enum Rarity {COMMON, UNCOMMON, RARE, LEGENDARY}
 enum Team {PLAYER, ENEMY}
 
@@ -16,8 +20,13 @@ const TEAM_SPRITESHEET := {
   Team.PLAYER: preload("uid://cx1ivjobggp8n"),
   Team.ENEMY: preload("uid://ct4xk88g67xlv"),
 }
+const TARGET := {
+  Team.PLAYER: "enemy_units",
+  Team.ENEMY: "player_units",
+}
+const MAX_ATTACK_RANGE := 5
+const MANA_PER_ATTACK := 10
 const MOVE_ONE_TILE_SPEED := 1.0
-
 
 @export var name: String
 
@@ -33,10 +42,48 @@ const MOVE_ONE_TILE_SPEED := 1.0
 
 @export_category("Battle")
 @export var team: Team
+@export var max_health: Array[int]
+@export var max_mana: int
+@export var starting_mana: int
+@export var attack_damage: Array[int]
+@export var ability_power: int
+@export var attack_speed: float
+@export var armor: int
+@export var magic_resist: int
+@export_range(1, MAX_ATTACK_RANGE) var attack_range: int = 1
+#TODO: attak and casting related variables
+
+
+var health: int: set = _set_health
+var mana: int: set = _set_mana
+
+
+func reset_health() -> void:
+  health = get_max_health()
+
+
+func reset_mana() -> void:
+  mana = starting_mana
+
+
+func get_max_health() -> int:
+  return max_health[tier - 1]
+
+
+func get_attack_damage() -> int:
+  return attack_damage[tier - 1]
 
 
 func get_combined_unit_count() -> int:
   return 3 ** (tier - 1)
+
+
+func get_time_between_attacks() -> float:
+  return 1.0 / attack_speed
+
+
+func is_melee() -> bool:
+  return attack_range == 1
 
 
 func get_combined_unit_gold_multiplier() -> int:
@@ -53,6 +100,17 @@ func _set_tier(new_tier: int) -> void:
   tier = new_tier
   emit_changed()
 
+
+func _set_health(new_health: int) -> void:
+  health = new_health
+  emit_changed()
+  if health <= 0: health_reached_zero.emit()
+
+
+func _set_mana(new_mana: int) -> void:
+  mana = new_mana
+  emit_changed()
+  if mana >= max_mana and max_mana > 0: mana_bar_filled.emit()
 
 func _to_string() -> String:
   return name

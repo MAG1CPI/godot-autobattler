@@ -6,7 +6,7 @@ class_name Unit
 signal quick_sell_pressed
 
 
-@export var stats: UnitStats: set = set_stats
+@export var stats: UnitStats: set = _set_stats
 
 
 @onready var skin: PackedSprite2D = $Visuals/Skin
@@ -36,7 +36,7 @@ func _input(event: InputEvent) -> void:
     quick_sell_pressed.emit()
 
 
-func set_stats(new_stats: UnitStats) -> void:
+func _set_stats(new_stats: UnitStats) -> void:
   if not Engine.is_editor_hint():
     stats = new_stats.duplicate()
   else:

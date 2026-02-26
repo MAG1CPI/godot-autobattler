@@ -2,12 +2,20 @@ extends Node
 class_name UnitAI
 
 
-@export var enabled: bool: set = set_enabled
+@export var debug_label: Label
+@export var enabled: bool: set = _set_enabled
 @export var actor: BattleUnit
-@export var fsm: FiniteStateMachine
 
 
-func set_enabled(new_flag: bool) -> void:
+var fsm: FiniteStateMachine
+
+
+func _ready() -> void:
+  fsm = FiniteStateMachine.new()
+  fsm.state_changed.connect(_on_state_changed)
+
+
+func _set_enabled(new_flag: bool) -> void:
   enabled = new_flag
   if enabled: _start_chasing()
   else: fsm.change_state(null)
@@ -40,3 +48,7 @@ func _on_chase_state_stuck() -> void:
 func _on_chase_state_target_reached(target: BattleUnit) -> void:
   var auto_attack_state := AutoAttackState.new(actor, target)
   fsm.change_state(auto_attack_state)
+
+
+func _on_state_changed(new_state: State) -> void:
+  debug_label.text = new_state.get_script().get_global_name()
